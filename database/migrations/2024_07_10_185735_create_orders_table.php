@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('user_id'); 
             $table->decimal('total', 8, 2);
-            $table->boolean('paid');
+            $table->boolean('paid')->default(0);
             $table->date('date');
             $table->timestamps();
         });

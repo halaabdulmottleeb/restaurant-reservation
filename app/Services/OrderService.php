@@ -7,6 +7,7 @@ use App\Repositories\MealRepository;
 use App\Repositories\MealStockRepository;
 use App\Repositories\OrderDetailsRepository;
 use App\Repositories\OrderRepository;
+use App\Services\Checkout\CheckoutService;
 
 class OrderService
 {
@@ -55,5 +56,16 @@ class OrderService
         }
 
         return $order;
+    }
+
+    public function checkout($data)
+    {
+        $orderId = $data['order_id'];
+        $checkoutService = new CheckoutService($data['checkout_type']);
+        $order = $this->orderRepository->find($orderId);
+        $invoice = $checkoutService->invoice($order->total);
+        $invoice['order_id'] = $orderId;
+
+        return  $invoice;
     }
 }

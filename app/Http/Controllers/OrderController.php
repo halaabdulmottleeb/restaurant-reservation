@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CheckoutRequest;
 use App\Http\Requests\CreateOrderRequest;
 use App\Services\OrderService;
 
@@ -29,6 +30,18 @@ class OrderController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Order placed successfully.',
+        ], 200);
+    }
+
+    public function checkout(CheckoutRequest $request)
+    {
+        $data = $request->validated();
+        $invoice = $this->orderService->checkout($data);
+
+        return response()->json([
+            'status' => 'success',
+            'invoice' => $invoice,
+            'message' => 'Order paid successfully.',
         ], 200);
     }
 }

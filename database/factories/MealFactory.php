@@ -17,7 +17,7 @@ class MealFactory extends Factory
     public function definition(): array
     {
         return [
-            'price' => $this->faker->randomFloat(2, 5, 50),
+            'price' => $this->faker->numberBetween(100, 1000),
             'description' => $this->faker->sentence,
             'name' => $this->faker->word,
             'available_quantity' => $this->faker->numberBetween(1, 100),

@@ -30,10 +30,14 @@ class Meal extends Model
     public function getAvailableQuantityAttribute()
     {
         if ($this->todayMealStock()) {
-           return  $this->todayMealStock->available_quantity;
+           return  $this->todayMealStock()->available_quantity;
         }
 
         return $this->attributes['available_quantity']; 
     }
 
+    public function getPriceAfterDiscountAttribute() 
+    {
+        return $this->attributes['price'] - $this->discount; 
+    }
 }

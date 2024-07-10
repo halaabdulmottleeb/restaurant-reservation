@@ -10,4 +10,9 @@ class MealRepository extends BaseRepository
     {
         parent::__construct($model);
     }
+
+    public function getMeals($mealIds)
+    {
+        return $this->model::whereIn('id', $mealIds)->get();
+    }
 }

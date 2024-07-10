@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ApiAuthController;
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
@@ -29,4 +30,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('list-tables', [TableController::class, 'getAll']);
     Route::get('check-availability', [ReservationController::class, 'checkAvailability']);
     Route::post('reserve-table', [ReservationController::class, 'reserve']);
+    Route::post('place-order', [OrderController::class, 'createOrder']);
+    Route::post('checkout', [OrderController::class, 'checkout']);
 });

@@ -20,7 +20,7 @@ class UserService
 
         if ($user) {
             $this->customerRepository->create(['user_id' => $user->id, 'phone' => $data['phone']]);
-            $token = $user->createToken('Personal Access Token')->accessToken->token;
+            $token = $user->createToken('Personal Access Token');
 
             return $token;
         }
@@ -33,9 +33,14 @@ class UserService
         $user = $this->userRepository->getOne('email', $data['email']);
        
         if ($user && Hash::check($data['password'], $user->password)) {
-            return  $user->createToken('Personal Access Token')->accessToken->token;
+            return  $user->createToken('Token Name')->accessToken;
         }
 
         return null;
+    }
+
+    public function createStaffUser($data)
+    {
+        return $this->userRepository->create($data);
     }
 }

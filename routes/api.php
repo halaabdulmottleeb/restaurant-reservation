@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApiAuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,4 +21,5 @@ Route::post('login', [ApiAuthController::class, 'login']);
 
 Route::middleware('auth:api')->group(function () {
     Route::get('user', [ApiAuthController::class, 'user']);
+    Route::post('staff-user', [UserController::class, 'createStaffUser']);
 });

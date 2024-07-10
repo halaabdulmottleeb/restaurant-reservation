@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ApiAuthController;
+use App\Http\Controllers\MealController;
+use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +25,8 @@ Route::post('login', [ApiAuthController::class, 'login']);
 Route::middleware('auth:api')->group(function () {
     Route::get('user', [ApiAuthController::class, 'user']);
     Route::post('staff-user', [UserController::class, 'createStaffUser']);
+    Route::get('list-menu-items', [MealController::class, 'getAll']);
+    Route::get('list-tables', [TableController::class, 'getAll']);
+    Route::get('check-availability', [ReservationController::class, 'checkAvailability']);
+    Route::post('reserve-table', [ReservationController::class, 'reserve']);
 });

@@ -39,5 +39,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         $this->call(MealsTableSeeder::class);
+        $this->call(TablesTableSeeder::class);
+
     }
 }

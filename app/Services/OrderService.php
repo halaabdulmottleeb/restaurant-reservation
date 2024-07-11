@@ -65,6 +65,7 @@ class OrderService
         $order = $this->orderRepository->find($orderId);
         $invoice = $checkoutService->invoice($order->total);
         $invoice['order_id'] = $orderId;
+        $this->orderRepository->update($orderId, ['paid' => true]);
 
         return  $invoice;
     }

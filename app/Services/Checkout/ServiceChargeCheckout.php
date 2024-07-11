@@ -8,14 +8,12 @@ class ServiceChargeCheckout implements CheckoutStrategy
 {
     public function invoice($total)
     {
-        $taxes =  0.14;
-        $service = 0.20;
+        $service = 0.15;
 
         return [ 
             'sub_total' => $total,
-            'taxes' => $total * $taxes,
             'service' => $total * $service,
-            'total'   => $total * (1 + $taxes + $service)
-        ];
+            'total'   => $total * (1 + $service)
+        ];   
     }
 }
